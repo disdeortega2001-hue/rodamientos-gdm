@@ -18,11 +18,13 @@ class BcvRateTest extends TestCase
 
     private const API = 'https://api.test/oficial';
 
-    private const HTML = '<div id="euro"><strong> 999,00000000 </strong></div><div id="dolar"><span>USD</span><div class="col"><strong> 891,10540000 </strong></div></div>';
+    private const HTML = '<div id="euro"><strong class="strong-tb">999,00000000</strong></div><div id="dolar" class="col-sm-12 col-xs-12 "><span> USD</span><div class="centrado textp"> <strong class="strong-tb">891,10540000</strong>  </div></div>'
+        .'<div class="pull-right dinpro center">Fecha Valor: <span class="date-display-single" property="dc:date" content="2026-11-03T00:00:00-04:00">Martes</span></div>';
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->travelTo(\Carbon\Carbon::parse('2026-11-03 12:00:00', 'America/Caracas'));
         config(['gdm.bcv_url' => self::BCV, 'gdm.bcv_fallback_url' => self::API]);
     }
 
@@ -37,6 +39,22 @@ class BcvRateTest extends TestCase
         $this->refresh();
         $this->assertSame('891.1054', Setting::usdRate());
         Http::assertSentCount(1);
+    }
+
+    public function test_rate_with_future_value_date_waits_until_its_day(): void
+    {
+        Setting::put('usd_rate', '891.1054');
+        $future = str_replace('2026-11-03', '2026-11-04', self::HTML);
+        $future = str_replace('891,10540000', '893,21730000', $future);
+        Http::fake([self::BCV => Http::response($future), self::API => Http::response(['promedio' => 891.1054])]);
+
+        $this->refresh();
+        $this->assertSame('891.1054', Setting::usdRate());
+
+        Cache::flush();
+        $this->travelTo(\Carbon\Carbon::parse('2026-11-04 08:00:00', 'America/Caracas'));
+        $this->refresh();
+        $this->assertSame('893.2173', Setting::usdRate());
     }
 
     public function test_uses_fallback_when_bcv_fails(): void
@@ -70,7 +88,7 @@ class BcvRateTest extends TestCase
         $this->refresh();
         Http::assertSentCount(1);
 
-        $this->travel(7)->hours();
+        $this->travelTo(now()->addHours(7));
         $this->refresh();
         Http::assertSentCount(2);
     }

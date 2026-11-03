@@ -23,7 +23,8 @@ class UsdRateService
         }
 
         $last = (int) Setting::get('usd_rate_fetched_at', '0');
-        if (now()->getTimestamp() - $last < self::FRESH_HOURS * 3600) {
+        $lastDay = $last > 0 ? now()->setTimestamp($last)->format('Y-m-d') : null;
+        if ($lastDay === now()->format('Y-m-d') && now()->getTimestamp() - $last < self::FRESH_HOURS * 3600) {
             return;
         }
 
@@ -44,7 +45,12 @@ class UsdRateService
         try {
             $response = Http::timeout(4)->withHeaders(['User-Agent' => 'Mozilla/5.0'])->get($url);
 
-            if (! $response->successful() || ! preg_match('/id="dolar".*?<strong>\s*([\d.,]+)\s*<\/strong>/s', $response->body(), $m)) {
+            if (! $response->successful() || ! preg_match('/id="dolar".*?<strong[^>]*>\s*([\d.,]+)\s*<\/strong>/s', $response->body(), $m)) {
+                return null;
+            }
+
+            // BCV publishes tomorrow's rate in the afternoon; it applies only from its value date.
+            if (preg_match('/Fecha Valor:.*?content="(\d{4}-\d{2}-\d{2})/s', $response->body(), $date) && $date[1] > now()->format('Y-m-d')) {
                 return null;
             }
 
