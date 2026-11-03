@@ -1,0 +1,33 @@
+kind: wasmer.io/App.v0
+name: rodamientos-gdm
+env:
+  APP_NAME: "Rodamientos GDM"
+  APP_ENV: production
+  APP_DEBUG: "false"
+  APP_LOCALE: es
+  APP_FALLBACK_LOCALE: es
+  LOG_CHANNEL: stderr
+  LOG_LEVEL: warning
+  DB_CONNECTION: mysql
+  SESSION_DRIVER: database
+  SESSION_SECURE_COOKIE: "true"
+  CACHE_STORE: database
+  QUEUE_CONNECTION: sync
+  FILESYSTEM_DISK: local
+  MAIL_MAILER: log
+  VIEW_COMPILED_PATH: /tmp/views
+  PUBLIC_DISK_ROOT: /data/uploads
+capabilities:
+  database:
+    engine: mysql
+volumes:
+  - name: datos
+    mount: /data
+jobs:
+  - name: preparar-portal
+    trigger: pre-deployment
+    action:
+      execute:
+        command: php
+        cli_args: ["/app/artisan", "gdm:setup"]
+        timeout: 5m
