@@ -322,6 +322,12 @@ a.top-item:hover { color: #fff; text-decoration: underline; }
     .note-actions { display: none; }
 }
 
+.coming-soon { text-align: center; margin-top: 18vh; }
+.coming-soon .brand { justify-content: center; }
+.coming-soon-link { font-size: .85rem; color: var(--muted); }
+
+.preview-bar { background: var(--orange); color: var(--navy-deep); font-weight: 600; font-size: .9rem; text-align: center; padding: .4rem .75rem; }
+
 /* Panel navigation */
 .panel-nav a { display: inline-flex; align-items: center; gap: .4rem; }
 .panel-nav a .icon { width: 17px; height: 17px; }

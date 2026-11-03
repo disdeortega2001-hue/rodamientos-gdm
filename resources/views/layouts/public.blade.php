@@ -19,6 +19,9 @@
 @endphp
 <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    @isset($previewMode)
+        <div class="preview-bar" role="status">Vista previa: el portal aún no está abierto al público y no recibe pedidos.</div>
+    @endisset
     <div class="top-bar">
         <div class="container top-bar-inner">
             <span class="top-item"><x-icon name="pin" /> {{ $city }}</span>

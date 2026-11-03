@@ -12,6 +12,12 @@
 </div>
 <form method="post" action="{{ url('/panel/ajustes') }}" class="panel-form">
     @csrf @method('put')
+    @if (config('gdm.portal_private'))
+        <div class="form-check mb-3">
+            <input class="form-check-input" id="portal_public" type="checkbox" name="portal_public" value="1" @checked(\App\Models\Setting::get('portal_public') === '1')>
+            <label class="form-check-label" for="portal_public"><strong>Abrir el portal al público.</strong> Sin marcar, los visitantes ven "Próximamente" y solo el personal con sesión iniciada ve el catálogo.</label>
+        </div>
+    @endif
     <div class="row g-3">
         <div class="col-md-6">
             <label class="form-label" for="usd_rate">Tasa del dólar (Bs. por $)</label>

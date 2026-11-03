@@ -49,6 +49,12 @@ El plan gratis no tiene línea de comandos, SFTP ni respaldos, así que:
 - En el panel, usa Ajustes > Importar Excel inicial una sola vez.
 - Descarga con frecuencia Ajustes > Descargar respaldo.
 
+## Modo privado
+
+Con `PORTAL_PRIVATE=true`, los visitantes ven "Próximamente" hasta que un administrador marque Ajustes > Abrir el portal al público. El personal con sesión iniciada siempre ve el portal.
+
+El enlace de vista previa (`/?vista=código`) muestra el portal durante 30 días en ese navegador, sin permitir pedidos. `app.yaml` guarda solo la huella del código en `PREVIEW_CODE_HASH`; cámbiala para anular los enlaces entregados.
+
 ## Pruebas
 
 ```bash

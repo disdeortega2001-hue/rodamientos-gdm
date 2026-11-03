@@ -48,6 +48,10 @@ class SettingController extends Controller
             Setting::put('usd_rate', $data['usd_rate'] ?? null);
         }
 
+        if (config('gdm.portal_private')) {
+            Setting::put('portal_public', $request->boolean('portal_public') ? '1' : '0');
+        }
+
         return back()->with('status', 'Ajustes guardados.');
     }
 }

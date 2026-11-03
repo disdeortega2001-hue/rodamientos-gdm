@@ -3,56 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Role;
-use App\Models\Product;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 class SystemController extends Controller
 {
-    /** Reports configuration as yes/no flags only; never values. */
-    public function status(): JsonResponse
-    {
-        $connection = config('database.default');
-        $reachable = false;
-        $tables = false;
-        $installed = false;
-        $products = 0;
-
-        try {
-            DB::connection()->getPdo();
-            $reachable = true;
-            $tables = Schema::hasTable('sessions') && Schema::hasTable('users') && Schema::hasTable('products');
-            if ($tables) {
-                $installed = User::exists();
-                $products = Product::count();
-            }
-        } catch (Throwable) {
-            // reachable and tables stay false
-        }
-
-        return response()->json([
-            'portal' => 'ok',
-            'php' => PHP_VERSION,
-            'app_key_set' => (bool) config('app.key'),
-            'install_code_set' => (bool) config('gdm.install_code_hash'),
-            'session_driver' => config('session.driver'),
-            'db_connection' => $connection,
-            'db_host_set' => (bool) config("database.connections.{$connection}.host"),
-            'db_name_set' => (bool) config("database.connections.{$connection}.database"),
-            'db_reachable' => $reachable,
-            'tables_ready' => $tables,
-            'installed' => $installed,
-            'products' => $products,
-        ]);
-    }
-
     public function installForm(): Response
     {
         abort_unless($this->installerOpen(), 404);

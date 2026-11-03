@@ -30,21 +30,9 @@ class SystemRoutesTest extends TestCase
         config(['gdm.install_code_hash' => hash('sha256', 'codigo-unico'), 'gdm.admin_email' => null, 'gdm.admin_password' => null]);
     }
 
-    public function test_status_reports_only_safe_flags(): void
+    public function test_status_page_no_longer_exists(): void
     {
-        config(['app.key' => 'base64:SECRETOSECRETOSECRETO']);
-        $response = $this->get('/estado')->assertOk()->assertJsonStructure([
-            'portal', 'php', 'app_key_set', 'install_code_set', 'session_driver', 'db_connection', 'db_host_set', 'db_name_set', 'db_reachable', 'tables_ready', 'installed', 'products',
-        ]);
-        $this->assertTrue($response->json('app_key_set'));
-        $response->assertDontSee('SECRETOSECRETO')->assertDontSee('codigo-unico');
-    }
-
-    public function test_status_works_without_sessions_table(): void
-    {
-        config(['session.driver' => 'database']);
-        Schema::dropIfExists('sessions');
-        $this->get('/estado')->assertOk()->assertJsonPath('tables_ready', false);
+        $this->get('/estado')->assertNotFound();
     }
 
     public function test_installer_form_works_without_sessions_table(): void

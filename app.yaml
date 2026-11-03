@@ -18,6 +18,8 @@ env:
   FILESYSTEM_DISK: local
   MAIL_MAILER: log
   VIEW_COMPILED_PATH: /tmp/views
+  PORTAL_PRIVATE: "true"
+  PREVIEW_CODE_HASH: 1ebf1322cfedc18fe5dbd60000e2088f7744ada837f70081fd00751d47db1c51
   BCV_RATE_URL: https://www.bcv.org.ve/
   BCV_FALLBACK_URL: https://ve.dolarapi.com/v1/dolares/oficial
   PUBLIC_DISK_ROOT: /data/uploads
