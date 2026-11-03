@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class OrderService
 {
@@ -71,7 +72,13 @@ class OrderService
             }
 
             $this->stock->consumeForOrder($locked, $user);
-            $locked->update(['status' => OrderStatus::Confirmed, 'confirmed_at' => now()]);
+            $locked->update([
+                'status' => OrderStatus::Confirmed,
+                'confirmed_at' => now(),
+                'delivery_note_number' => $this->nextNoteNumber(),
+                'delivery_note_token' => Str::random(40),
+                'delivery_note_issued_at' => now(),
+            ]);
         });
     }
 
@@ -99,6 +106,14 @@ class OrderService
 
             $locked->update(['status' => OrderStatus::Cancelled, 'cancelled_at' => now()]);
         });
+    }
+
+    /** Numbers are never reused: cancelled sales keep theirs, marked as void. */
+    private function nextNoteNumber(): string
+    {
+        $issued = Order::whereNotNull('delivery_note_number')->lockForUpdate()->count();
+
+        return sprintf('NE-%04d', $issued + 1);
     }
 
     private function transition(Order $order, callable $change): void

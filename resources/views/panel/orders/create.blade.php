@@ -13,6 +13,10 @@
     </div>
     @include('panel.partials.line-items')
     <div class="mt-3"><label class="form-label" for="note">Nota</label><textarea class="form-control" id="note" name="note" rows="2">{{ old('note') }}</textarea></div>
-    <button class="btn btn-brand mt-3">Crear pedido</button>
+    <div class="form-check mt-3">
+        <input class="form-check-input" id="venta_inmediata" type="checkbox" name="venta_inmediata" value="1" checked>
+        <label class="form-check-label" for="venta_inmediata">Venta inmediata: descontar existencias, marcar entregado y crear la nota de entrega</label>
+    </div>
+    <button class="btn btn-brand mt-3">Registrar</button>
 </form>
 @endsection

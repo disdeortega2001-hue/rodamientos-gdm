@@ -12,8 +12,11 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Services\OrderService;
 use App\Support\Money;
+use App\Support\Phone;
+use App\Support\WhatsApp;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -43,14 +46,32 @@ class OrderController extends Controller
         $data = $request->validated();
         $order = $orders->create($data['items'], Customer::fromStaff($data['name'], $data['phone']), 'counter', $data['note'] ?? null);
 
-        return redirect('/panel/pedidos/'.$order->id)->with('status', 'Pedido creado.');
+        if (! $request->boolean('venta_inmediata')) {
+            return redirect('/panel/pedidos/'.$order->id)->with('status', 'Pedido creado.');
+        }
+
+        try {
+            $orders->confirm($order, $request->user());
+            $orders->deliver($order, $request->user());
+        } catch (InsufficientStock|InvalidTransition|MissingPrice $e) {
+            return redirect('/panel/pedidos/'.$order->id)->withErrors(['order' => $e->getMessage()]);
+        }
+
+        return redirect('/panel/pedidos/'.$order->id)->with('status', 'Venta registrada. Nota de entrega '.$order->refresh()->delivery_note_number.' creada.');
     }
 
     public function show(Order $order): View
     {
         $order->load(['customer', 'items', 'payments.user']);
 
-        return view('panel.orders.show', compact('order'));
+        $noteWhatsapp = $order->delivery_note_token && $order->customer
+            ? WhatsApp::urlTo(
+                Phone::international($order->customer->phone),
+                "Hola, {$order->customer->name}. Aquí tienes tu nota de entrega {$order->delivery_note_number} de ".Setting::get('business_name', 'Rodamientos GDM').': '.url('/nota/'.$order->delivery_note_token)
+            )
+            : null;
+
+        return view('panel.orders.show', compact('order', 'noteWhatsapp'));
     }
 
     public function confirm(Request $request, Order $order, OrderService $orders): RedirectResponse

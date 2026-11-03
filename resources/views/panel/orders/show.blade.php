@@ -21,6 +21,17 @@
     </div>
 </div>
 
+@if ($order->delivery_note_number)
+<div class="panel-card note-card">
+    <strong>Nota de entrega {{ $order->delivery_note_number }}</strong>
+    <div class="order-actions">
+        <a class="btn btn-sm btn-brand" href="{{ url('/nota/'.$order->delivery_note_token.'/pdf') }}">Descargar PDF</a>
+        <a class="btn btn-sm btn-outline-brand" href="{{ url('/nota/'.$order->delivery_note_token) }}">Ver e imprimir</a>
+        @if ($noteWhatsapp)<a class="btn btn-sm btn-outline-brand" href="{{ $noteWhatsapp }}" rel="noopener">Enviar por WhatsApp</a>@endif
+    </div>
+</div>
+@endif
+
 <div class="panel-card">
     @if ($order->customer)
         <p class="mb-1"><strong>Cliente:</strong> <a href="{{ url('/panel/clientes/'.$order->customer_id) }}">{{ $order->customer->name }}</a> · {{ $order->customer->phone }}</p>

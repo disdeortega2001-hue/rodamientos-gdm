@@ -12,6 +12,7 @@
     $sections = [
         ['panel', 'Inicio', 'home', false],
         ['panel/pedidos', 'Pedidos', 'cart', false],
+        ['panel/notas', 'Notas de entrega', 'check', false],
         ['panel/cotizaciones', 'Cotizaciones', 'file', false],
         ['panel/clientes', 'Clientes', 'users', false],
         ['panel/productos', 'Productos', 'ring', false],

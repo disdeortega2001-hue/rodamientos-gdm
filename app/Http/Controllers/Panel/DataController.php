@@ -50,8 +50,8 @@ class DataController extends Controller
             Product::with('category')->orderBy('code')->get()->map(fn (Product $p) => [$p->code, $p->category->name, $p->measures, $p->description, $p->brand, $this->usd($p->price_cents), $this->usd($p->avg_cost_cents), $p->stock, $p->is_visible ? 'Sí' : 'No']));
         $this->sheet($book, 'Clientes', ['Nombre', 'Teléfono', 'Notas'],
             Customer::orderBy('name')->get()->map(fn (Customer $c) => [$c->name, $c->phone, $c->notes]));
-        $this->sheet($book, 'Pedidos', ['Número', 'Fecha', 'Cliente', 'Teléfono', 'Estado', 'Origen', 'Tasa', 'Nota'],
-            Order::with('customer')->orderBy('id')->get()->map(fn (Order $o) => [$o->number, $o->created_at?->format('Y-m-d H:i'), $o->customer?->name, $o->customer?->phone, $o->status->label(), $o->source, $o->usd_rate, $o->note]));
+        $this->sheet($book, 'Pedidos', ['Número', 'Fecha', 'Cliente', 'Teléfono', 'Estado', 'Origen', 'Tasa', 'Nota', 'Nota de entrega'],
+            Order::with('customer')->orderBy('id')->get()->map(fn (Order $o) => [$o->number, $o->created_at?->format('Y-m-d H:i'), $o->customer?->name, $o->customer?->phone, $o->status->label(), $o->source, $o->usd_rate, $o->note, $o->delivery_note_number]));
         $this->sheet($book, 'Piezas', ['Pedido', 'Código', 'Medidas', 'Cantidad', 'Precio ($)', 'Costo ($)'],
             OrderItem::with('order')->orderBy('order_id')->get()->map(fn (OrderItem $i) => [$i->order->number, $i->code, $i->measures, $i->quantity, $this->usd($i->unit_price_cents), $this->usd($i->unit_cost_cents)]));
         $this->sheet($book, 'Pagos', ['Pedido', 'Fecha', 'Forma', 'Referencia', 'Monto ($)'],

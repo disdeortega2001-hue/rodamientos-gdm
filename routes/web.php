@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DeliveryNoteController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Panel\AuthController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Panel\CategoryController;
 use App\Http\Controllers\Panel\CustomerController;
 use App\Http\Controllers\Panel\DashboardController;
 use App\Http\Controllers\Panel\DataController;
+use App\Http\Controllers\Panel\DeliveryNoteController as PanelDeliveryNoteController;
 use App\Http\Controllers\Panel\InventoryController;
 use App\Http\Controllers\Panel\OrderController;
 use App\Http\Controllers\Panel\PaymentController;
@@ -32,6 +34,8 @@ Route::post('/carrito/resumen', [CheckoutController::class, 'summary']);
 Route::post('/pedido', [CheckoutController::class, 'store'])->middleware('throttle:checkout');
 Route::get('/cotizacion/{token}', [PublicQuoteController::class, 'show']);
 Route::get('/cotizacion/{token}/pdf', [PublicQuoteController::class, 'pdf']);
+Route::get('/nota/{token}', [DeliveryNoteController::class, 'show']);
+Route::get('/nota/{token}/pdf', [DeliveryNoteController::class, 'pdf']);
 
 Route::prefix('panel')->group(function () {
     Route::get('acceso', [AuthController::class, 'show'])->name('login');
@@ -60,6 +64,8 @@ Route::prefix('panel')->group(function () {
         Route::post('cotizaciones', [QuoteController::class, 'store'])->middleware('once');
         Route::get('cotizaciones/{quote}', [QuoteController::class, 'show']);
         Route::post('cotizaciones/{quote}/convertir', [QuoteController::class, 'convert']);
+
+        Route::get('notas', [PanelDeliveryNoteController::class, 'index']);
 
         Route::get('clientes', [CustomerController::class, 'index']);
         Route::get('clientes/{customer}', [CustomerController::class, 'show']);

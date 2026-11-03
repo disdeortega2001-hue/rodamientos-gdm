@@ -20,6 +20,7 @@ class Order extends Model
             'confirmed_at' => 'datetime',
             'delivered_at' => 'datetime',
             'cancelled_at' => 'datetime',
+            'delivery_note_issued_at' => 'datetime',
         ];
     }
 
