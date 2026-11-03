@@ -25,7 +25,6 @@
         <td>
             <p class="business">{{ $business }}</p>
             <p>{{ $address ?: $city }}</p>
-            @if ($address)<p>{{ $city }}</p>@endif
             @if ($rif)<p>RIF {{ $rif }}</p>@endif
             <p>WhatsApp: {{ \App\Support\Phone::normalize($phone) }}</p>
         </td>

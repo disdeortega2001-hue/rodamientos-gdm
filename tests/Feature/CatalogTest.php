@@ -88,10 +88,10 @@ class CatalogTest extends TestCase
         $this->get('/catalogo')->assertSee('Bs. 1.118,52');
     }
 
-    public function test_low_stock_label_hides_quantity(): void
+    public function test_low_stock_shows_as_available_without_quantity(): void
     {
         $this->product(['code' => 'POCAS', 'stock' => 2]);
-        $this->get('/catalogo/pocas')->assertSee('Pocas unidades')->assertDontSee('2 unidades');
+        $this->get('/catalogo/pocas')->assertSee('Disponible')->assertDontSee('2 unidades');
     }
 
     public function test_reference_image_is_labeled(): void

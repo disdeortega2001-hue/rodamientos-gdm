@@ -10,13 +10,13 @@ use Illuminate\View\View;
 
 class SettingController extends Controller
 {
-    private const KEYS = ['usd_rate', 'business_name', 'whatsapp_number', 'city', 'rif', 'address', 'hours', 'payment_methods', 'home_text'];
+    private const KEYS = ['business_name', 'whatsapp_number', 'city', 'rif', 'address', 'hours', 'payment_methods', 'home_text'];
 
     public function edit(): View
     {
-        $values = collect(self::KEYS)->mapWithKeys(fn (string $key) => [$key => Setting::get($key)]);
+        $values = collect([...self::KEYS, 'usd_rate'])->mapWithKeys(fn (string $key) => [$key => Setting::get($key)]);
 
-        return view('panel.settings.edit', ['values' => $values]);
+        return view('panel.settings.edit', ['values' => $values, 'autoRate' => Setting::get('usd_rate_auto', '1') === '1']);
     }
 
     public function update(Request $request): RedirectResponse
@@ -39,6 +39,13 @@ class SettingController extends Controller
 
         foreach (self::KEYS as $key) {
             Setting::put($key, $data[$key] ?? null);
+        }
+
+        $auto = $request->boolean('usd_rate_auto');
+        Setting::put('usd_rate_auto', $auto ? '1' : '0');
+
+        if (! $auto) {
+            Setting::put('usd_rate', $data['usd_rate'] ?? null);
         }
 
         return back()->with('status', 'Ajustes guardados.');

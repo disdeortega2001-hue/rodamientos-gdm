@@ -42,7 +42,7 @@ final class PublicProduct
             priceCents: $p->price_cents,
             priceText: $p->price_cents === null ? null : Money::usd($p->price_cents),
             bsText: $p->price_cents === null || $rate === null ? null : Money::bs($p->price_cents, $rate),
-            availability: $p->availability(),
+            availability: $p->availability() === Availability::Low ? Availability::Available : $p->availability(),
             imageUrl: $image?->url(),
             imageIsReference: (bool) $image?->is_reference,
             specs: Measures::labeled($p->measures),

@@ -16,7 +16,11 @@
         <div class="col-md-6">
             <label class="form-label" for="usd_rate">Tasa del dólar (Bs. por $)</label>
             <input class="form-control" id="usd_rate" name="usd_rate" inputmode="decimal" value="{{ old('usd_rate', $values['usd_rate']) }}">
-            <div class="form-text">Déjala vacía para mostrar los precios solo en dólares.</div>
+            <div class="form-check mt-2">
+                <input class="form-check-input" id="usd_rate_auto" type="checkbox" name="usd_rate_auto" value="1" @checked($autoRate)>
+                <label class="form-check-label" for="usd_rate_auto">Usar la tasa oficial del BCV automáticamente</label>
+            </div>
+            <div class="form-text">Desmárcala para escribir la tasa a mano. Si la dejas vacía, los precios salen solo en dólares.</div>
         </div>
         <div class="col-md-6">
             <label class="form-label" for="whatsapp_number">WhatsApp (con código de país)</label>

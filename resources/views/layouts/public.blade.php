@@ -24,7 +24,7 @@
             <span class="top-item"><x-icon name="pin" /> {{ $city }}</span>
             <a class="top-item" href="{{ $contactUrl }}" rel="noopener"><x-icon name="chat" /> {{ $phoneText }}</a>
             @if ($rate)
-                <span class="top-item top-rate">Tasa: Bs. {{ number_format((float) $rate, 2, ',', '.') }} por $</span>
+                <span class="top-item top-rate">{{ \App\Models\Setting::get('usd_rate_auto', '1') === '1' && config('gdm.bcv_url') ? 'Tasa BCV' : 'Tasa' }}: Bs. {{ number_format((float) $rate, 2, ',', '.') }} por $</span>
             @endif
         </div>
     </div>

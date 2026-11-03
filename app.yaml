@@ -18,6 +18,8 @@ env:
   FILESYSTEM_DISK: local
   MAIL_MAILER: log
   VIEW_COMPILED_PATH: /tmp/views
+  BCV_RATE_URL: https://www.bcv.org.ve/
+  BCV_FALLBACK_URL: https://ve.dolarapi.com/v1/dolares/oficial
   PUBLIC_DISK_ROOT: /data/uploads
 capabilities:
   database:

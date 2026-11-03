@@ -3,6 +3,7 @@
 use App\Http\Middleware\EnsureUserIsActive;
 use App\Http\Middleware\NormalizeDecimalComma;
 use App\Http\Middleware\PreventDoubleSubmit;
+use App\Http\Middleware\RefreshUsdRate;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -20,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo('/panel/acceso');
+        $middleware->web(append: [RefreshUsdRate::class]);
         $middleware->alias([
             'active' => EnsureUserIsActive::class,
             'decimal' => NormalizeDecimalComma::class,
