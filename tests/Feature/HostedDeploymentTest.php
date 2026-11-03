@@ -141,7 +141,6 @@ class HostedDeploymentTest extends TestCase
     {
         $yaml = file_get_contents(base_path('app.yaml'));
         $this->assertStringContainsString('engine: mysql', $yaml);
-        $this->assertStringContainsString('gdm:setup', $yaml);
         $this->assertStringNotContainsString('APP_KEY', $yaml);
         $this->assertStringNotContainsString('ADMIN_PASSWORD', $yaml);
     }

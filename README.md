@@ -44,8 +44,8 @@ Guarda una copia fechada en `storage/app/backups`. Prográmalo a diario en el ho
 El plan gratis no tiene línea de comandos, SFTP ni respaldos, así que:
 
 - `app.yaml` y `wasmer.toml` definen la aplicación, la base MySQL y el volumen de fotos.
-- En Wasmer crea los secretos `APP_KEY`, `APP_URL`, `ADMIN_EMAIL` y `ADMIN_PASSWORD`.
-- `gdm:setup` prepara la base y crea el primer administrador al publicar.
+- La clave de la aplicación se deriva de la contraseña de la base que crea Wasmer; no hay secretos que agregar a mano.
+- Abre `/instalar` una sola vez con el código de instalación: prepara la base y crea el administrador, y luego se cierra. `app.yaml` guarda solo su huella SHA-256.
 - En el panel, usa Ajustes > Importar Excel inicial una sola vez.
 - Descarga con frecuencia Ajustes > Descargar respaldo.
 

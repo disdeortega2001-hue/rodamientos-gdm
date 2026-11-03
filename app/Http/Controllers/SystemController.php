@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Role;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -10,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 class SystemController extends Controller
@@ -39,7 +41,7 @@ class SystemController extends Controller
             'portal' => 'ok',
             'php' => PHP_VERSION,
             'app_key_set' => (bool) config('app.key'),
-            'admin_secrets_set' => $this->secretsSet(),
+            'install_code_set' => (bool) config('gdm.install_code_hash'),
             'session_driver' => config('session.driver'),
             'db_connection' => $connection,
             'db_host_set' => (bool) config("database.connections.{$connection}.host"),
@@ -62,32 +64,51 @@ class SystemController extends Controller
     {
         abort_unless($this->installerOpen(), 404);
 
-        $given = (string) $request->input('clave', '');
-        if (! hash_equals((string) config('gdm.admin_password'), $given)) {
-            return response()->view('system.install', ['error' => 'La contraseña no coincide con ADMIN_PASSWORD.'], 403);
+        if (! hash_equals((string) config('gdm.install_code_hash'), hash('sha256', trim((string) $request->input('codigo', ''))))) {
+            return response()->view('system.install', ['error' => 'El código de instalación no es correcto.', 'email' => $request->input('email')], 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:10', 'confirmed'],
+        ], [
+            'email.required' => 'Escribe tu correo.',
+            'email.email' => 'Escribe un correo válido.',
+            'password.required' => 'Escribe una contraseña.',
+            'password.min' => 'La contraseña debe tener al menos 10 caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->view('system.install', ['error' => $validator->errors()->first(), 'email' => $request->input('email')], 422);
         }
 
         try {
             $code = Artisan::call('gdm:setup');
+
+            if ($code !== 0) {
+                return response()->view('system.install', ['error' => 'No se pudo instalar: '.trim(Artisan::output())], 500);
+            }
+
+            if (! User::exists()) {
+                User::create([
+                    'name' => 'Administrador',
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password'),
+                    'role' => Role::Admin,
+                    'is_active' => true,
+                ]);
+            }
         } catch (Throwable $e) {
             return response()->view('system.install', ['error' => 'No se pudo instalar: '.$e->getMessage()], 500);
-        }
-
-        if ($code !== 0) {
-            return response()->view('system.install', ['error' => 'No se pudo instalar: '.trim(Artisan::output())], 500);
         }
 
         return response()->view('system.installed');
     }
 
-    private function secretsSet(): bool
-    {
-        return config('gdm.admin_email') && config('gdm.admin_password');
-    }
-
     private function installerOpen(): bool
     {
-        if (! $this->secretsSet()) {
+        if (! config('gdm.install_code_hash')) {
             return false;
         }
 

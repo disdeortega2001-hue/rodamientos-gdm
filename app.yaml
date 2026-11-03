@@ -3,6 +3,8 @@ name: rodamientos-gdm
 env:
   APP_NAME: "Rodamientos GDM"
   APP_ENV: production
+  APP_URL: https://rodamientos-gdm.wasmer.app
+  INSTALL_CODE_HASH: 02dc8c12132ecfe3b39bc0786bcbcad729e0225af475aec294055c4de10a11ab
   APP_DEBUG: "false"
   APP_LOCALE: es
   APP_FALLBACK_LOCALE: es
@@ -23,11 +25,3 @@ capabilities:
 volumes:
   - name: datos
     mount: /data
-jobs:
-  - name: preparar-portal
-    trigger: pre-deployment
-    action:
-      execute:
-        command: php
-        cli_args: ["/app/artisan", "gdm:setup"]
-        timeout: 5m

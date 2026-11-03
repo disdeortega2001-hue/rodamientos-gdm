@@ -97,7 +97,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'key' => env('APP_KEY'),
+    'key' => App\Support\AppKey::resolve(env('APP_KEY'), env('DB_PASSWORD'), env('APP_ENV')),
 
     'previous_keys' => [
         ...array_filter(
