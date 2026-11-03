@@ -28,7 +28,7 @@ return [
         'UC205 SKF' => $photo('uc205-skf'),
         'UC206 SKF' => $photo('uc206-skf'),
         'UC207 SKF' => $photo('uc207-skf'),
-        '207KRRB17 SKF' => $photo('uc207-skf', true),
+        '207KRRB17 SKF' => $photo('207krrb17-skf'),
         'CRUCETA 330' => $photo('cruceta-330'),
         'CRUCETA 369' => $photo('cruceta-369'),
         'ESTOPERA 60X90X10' => $seal,

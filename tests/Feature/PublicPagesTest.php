@@ -76,9 +76,16 @@ class PublicPagesTest extends TestCase
 
     public function test_reference_label(): void
     {
-        foreach (['6205-2rs-skf', '6306-2rs-skf', 'kit-punta-de-eje-de-rotativa', '207krrb17-skf', 'estopera-60x90x10'] as $slug) {
+        foreach (['6205-2rs-skf', '6306-2rs-skf', 'kit-punta-de-eje-de-rotativa', 'estopera-60x90x10'] as $slug) {
             $this->get("/catalogo/{$slug}")->assertSee('Imagen referencial');
         }
+    }
+
+    public function test_207krrb17_uses_its_real_photo(): void
+    {
+        $image = Product::where('code', '207KRRB17 SKF')->first()->images->first();
+        $this->assertSame('img/products/207krrb17-skf.webp', $image->path);
+        $this->assertFalse($image->is_reference);
     }
 
     public function test_catalog_photo_is_not_reference(): void
