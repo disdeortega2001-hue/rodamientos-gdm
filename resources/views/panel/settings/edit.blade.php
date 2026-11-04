@@ -48,7 +48,8 @@
         <div class="col-md-6"><label class="form-label" for="city">Ciudad</label><input class="form-control" id="city" name="city" value="{{ old('city', $values['city']) }}" required></div>
         <div class="col-md-6"><label class="form-label" for="address">Dirección</label><input class="form-control" id="address" name="address" value="{{ old('address', $values['address']) }}"></div>
         <div class="col-md-6"><label class="form-label" for="hours">Horario</label><input class="form-control" id="hours" name="hours" value="{{ old('hours', $values['hours']) }}"></div>
-        <div class="col-12"><label class="form-label" for="payment_methods">Formas de pago</label><input class="form-control" id="payment_methods" name="payment_methods" value="{{ old('payment_methods', $values['payment_methods']) }}" placeholder="Pago móvil, transferencia, efectivo"></div>
+        <div class="col-md-6"><label class="form-label" for="instagram">Instagram</label><input class="form-control" id="instagram" name="instagram" value="{{ old('instagram', $values['instagram']) }}" placeholder="rodamientogdm" autocomplete="off"></div>
+        <div class="col-md-6"><label class="form-label" for="payment_methods">Formas de pago</label><input class="form-control" id="payment_methods" name="payment_methods" value="{{ old('payment_methods', $values['payment_methods']) }}" placeholder="Pago móvil, transferencia, efectivo"></div>
     </div>
 
     <h2 class="form-section-title">Texto del inicio</h2>

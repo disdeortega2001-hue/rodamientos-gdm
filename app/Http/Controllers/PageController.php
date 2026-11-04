@@ -41,6 +41,7 @@ class PageController extends Controller
             'paymentMethods' => Setting::get('payment_methods'),
             'city' => Setting::get('city', 'Valle de la Pascua, Guárico'),
             'phone' => Setting::get('whatsapp_number', '584129477195'),
+            'instagram' => Setting::get('instagram'),
             'whatsappUrl' => WhatsApp::url('Hola, Rodamientos GDM. Quiero hacer una consulta.'),
         ]);
     }

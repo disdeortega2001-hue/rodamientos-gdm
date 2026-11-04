@@ -9,6 +9,7 @@
     <p>Rodamientos GDM vende rolineras SKF, crucetas y estoperas en {{ $city }}, para automoción, maquinaria e industria.</p>
     <dl class="contact-list">
         <dt>WhatsApp</dt><dd><a href="{{ $whatsappUrl }}" rel="noopener">{{ \App\Support\Phone::normalize($phone) }}</a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/{{ $instagram }}/" target="_blank" rel="noopener noreferrer">{{ '@'.$instagram }}</a></dd>
         <dt>Ciudad</dt><dd>{{ $city }}</dd>
         @if ($address)<dt>Dirección</dt><dd>{{ $address }}</dd>@endif
         @if ($hours)<dt>Horario</dt><dd>{{ $hours }}</dd>@endif

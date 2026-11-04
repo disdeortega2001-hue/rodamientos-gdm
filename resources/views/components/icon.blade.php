@@ -7,6 +7,7 @@
     @case('pin')<path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/>@break
     @case('ruler')<path d="M3 16.5 16.5 3 21 7.5 7.5 21 3 16.5Z"/><path d="m7 12.5 2 2M10 9.5l2 2M13 6.5l2 2"/>@break
     @case('ring')<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="5.5" r=".8"/><circle cx="12" cy="18.5" r=".8"/><circle cx="5.5" cy="12" r=".8"/><circle cx="18.5" cy="12" r=".8"/>@break
+    @case('instagram')<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".8" fill="currentColor"/>@break
     @case('price')<path d="M4 12V4h8l8 8-8 8-8-8Z"/><circle cx="8.5" cy="8.5" r="1.2"/>@break
     @case('arrow')<path d="M5 12h14M13 6l6 6-6 6"/>@break
     @case('check')<path d="m5 12.5 4.5 4.5L19 7.5"/>@break

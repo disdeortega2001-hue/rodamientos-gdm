@@ -9,6 +9,7 @@ class Setting extends Model
     private const DEFAULTS = [
         'address' => 'Valle de la Pascua, estado Guárico',
         'hours' => 'Siempre disponible',
+        'instagram' => 'rodamientogdm',
     ];
 
     protected $guarded = [];

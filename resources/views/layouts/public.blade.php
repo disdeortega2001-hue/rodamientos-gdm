@@ -16,6 +16,7 @@
     $localPhone = \App\Support\Phone::normalize(\App\Models\Setting::get('whatsapp_number', '584129477195'));
     $phoneText = strlen($localPhone) === 11 ? substr($localPhone, 0, 4).'-'.substr($localPhone, 4, 3).'-'.substr($localPhone, 7) : $localPhone;
     $contactUrl = \App\Support\WhatsApp::url('Hola, Rodamientos GDM. Quiero hacer una consulta.');
+    $instagram = \App\Models\Setting::get('instagram');
 @endphp
 <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,6 +27,7 @@
         <div class="container top-bar-inner">
             <span class="top-item"><x-icon name="pin" /> {{ $city }}</span>
             <a class="top-item" href="{{ $contactUrl }}" rel="noopener"><x-icon name="chat" /> {{ $phoneText }}</a>
+            <a class="top-item" href="https://www.instagram.com/{{ $instagram }}/" target="_blank" rel="noopener noreferrer"><x-icon name="instagram" /> {{ '@'.$instagram }}</a>
             @if ($rate)
                 <span class="top-item top-rate">{{ \App\Models\Setting::get('usd_rate_auto', '1') === '1' && config('gdm.bcv_url') ? 'Tasa BCV' : 'Tasa' }}: Bs. {{ number_format((float) $rate, 2, ',', '.') }} por $</span>
             @endif
@@ -70,6 +72,7 @@
                 <h2 class="footer-title">Contacto</h2>
                 <ul class="footer-links">
                     <li><a href="{{ $contactUrl }}" rel="noopener">WhatsApp: {{ $phoneText }}</a></li>
+                    <li><a href="https://www.instagram.com/{{ $instagram }}/" target="_blank" rel="noopener noreferrer">Instagram: {{ '@'.$instagram }}</a></li>
                     <li>{{ $city }}</li>
                 </ul>
             </div>
