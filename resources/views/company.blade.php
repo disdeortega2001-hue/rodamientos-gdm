@@ -1,12 +1,12 @@
 @extends('layouts.public')
 
-@section('title', 'Empresa y contacto | Rodamientos GDM')
-@section('description', 'Rodamientos GDM vende rolineras SKF en Valle de la Pascua, Guárico. Contáctanos por WhatsApp.')
+@section('title', 'Empresa y contacto | Rodamiento GDM')
+@section('description', 'Rodamiento GDM vende rolineras SKF en Valle de la Pascua, Guárico. Contáctanos por WhatsApp.')
 
 @section('content')
 <section class="container page-section narrow">
     <h1 class="page-title">Empresa y contacto</h1>
-    <p>Rodamientos GDM vende rolineras SKF, crucetas y estoperas en {{ $city }}, para automoción, maquinaria e industria.</p>
+    <p>Rodamiento GDM vende rolineras SKF, crucetas y estoperas en {{ $city }}, para automoción, maquinaria e industria.</p>
     <dl class="contact-list">
         <dt>WhatsApp</dt><dd><a href="{{ $whatsappUrl }}" rel="noopener">{{ \App\Support\Phone::normalize($phone) }}</a></dd>
         <dt>Instagram</dt><dd><a href="https://www.instagram.com/{{ $instagram }}/" target="_blank" rel="noopener noreferrer">{{ '@'.$instagram }}</a></dd>

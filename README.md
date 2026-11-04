@@ -1,4 +1,4 @@
-# Portal Rodamientos GDM
+# Portal Rodamiento GDM
 
 Portal público y panel administrativo. Laravel, Blade y Bootstrap, sin proceso de compilación.
 

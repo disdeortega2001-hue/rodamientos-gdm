@@ -21,14 +21,14 @@ class PageController extends Controller
         return view('home', [
             'featured' => $featured,
             'homeText' => Setting::get('home_text'),
-            'whatsappUrl' => WhatsApp::url('Hola, Rodamientos GDM. Necesito ayuda para ubicar una pieza.'),
+            'whatsappUrl' => WhatsApp::url('Hola, Rodamiento GDM. Necesito ayuda para ubicar una pieza.'),
         ]);
     }
 
     public function guide(): View
     {
         return view('guide', [
-            'whatsappUrl' => WhatsApp::url('Hola, Rodamientos GDM. Necesito ayuda para identificar una pieza.'),
+            'whatsappUrl' => WhatsApp::url('Hola, Rodamiento GDM. Necesito ayuda para identificar una pieza.'),
         ]);
     }
 
@@ -42,7 +42,7 @@ class PageController extends Controller
             'city' => Setting::get('city', 'Valle de la Pascua, Guárico'),
             'phone' => Setting::get('whatsapp_number', '584129477195'),
             'instagram' => Setting::get('instagram'),
-            'whatsappUrl' => WhatsApp::url('Hola, Rodamientos GDM. Quiero hacer una consulta.'),
+            'whatsappUrl' => WhatsApp::url('Hola, Rodamiento GDM. Quiero hacer una consulta.'),
         ]);
     }
 

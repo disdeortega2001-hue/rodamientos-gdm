@@ -67,7 +67,7 @@ class OrderController extends Controller
         $noteWhatsapp = $order->delivery_note_token && $order->customer
             ? WhatsApp::urlTo(
                 Phone::international($order->customer->phone),
-                "Hola, {$order->customer->name}. Aquí tienes tu nota de entrega {$order->delivery_note_number} de ".Setting::get('business_name', 'Rodamientos GDM').': '.url('/nota/'.$order->delivery_note_token)
+                "Hola, {$order->customer->name}. Aquí tienes tu nota de entrega {$order->delivery_note_number} de ".Setting::get('business_name', 'Rodamiento GDM').': '.url('/nota/'.$order->delivery_note_token)
             )
             : null;
 

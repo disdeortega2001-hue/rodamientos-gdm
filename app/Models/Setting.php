@@ -12,11 +12,17 @@ class Setting extends Model
         'instagram' => 'rodamientogdm',
     ];
 
+    private const FORMER_BUSINESS_NAME = 'Rodamientos'.' GDM';
+
     protected $guarded = [];
 
     public static function get(string $key, ?string $default = null): ?string
     {
         $value = static::where('key', $key)->value('value');
+
+        if ($key === 'business_name' && $value === self::FORMER_BUSINESS_NAME) {
+            return 'Rodamiento GDM';
+        }
 
         return $value !== null && $value !== '' ? $value : ($default ?? self::DEFAULTS[$key] ?? null);
     }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Rodamientos GDM | Rolineras SKF en Valle de la Pascua')</title>
+    <title>@yield('title', 'Rodamiento GDM | Rolineras SKF en Valle de la Pascua')</title>
     <meta name="description" content="@yield('description', 'Rolineras y rodamientos SKF en Valle de la Pascua, Guárico. Busca por código o medida y envía tu pedido por WhatsApp.')">
     <meta name="theme-color" content="#14284B">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap.min.css') }}">
@@ -15,7 +15,7 @@
     $rate = \App\Models\Setting::usdRate();
     $localPhone = \App\Support\Phone::normalize(\App\Models\Setting::get('whatsapp_number', '584129477195'));
     $phoneText = strlen($localPhone) === 11 ? substr($localPhone, 0, 4).'-'.substr($localPhone, 4, 3).'-'.substr($localPhone, 7) : $localPhone;
-    $contactUrl = \App\Support\WhatsApp::url('Hola, Rodamientos GDM. Quiero hacer una consulta.');
+    $contactUrl = \App\Support\WhatsApp::url('Hola, Rodamiento GDM. Quiero hacer una consulta.');
     $instagram = \App\Models\Setting::get('instagram');
 @endphp
 <body>

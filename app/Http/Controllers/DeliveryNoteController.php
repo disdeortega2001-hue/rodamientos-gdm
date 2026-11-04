@@ -27,7 +27,7 @@ class DeliveryNoteController extends Controller
     {
         return [
             'order' => Order::where('delivery_note_token', $token)->with(['customer', 'items', 'payments'])->firstOrFail(),
-            'business' => Setting::get('business_name', 'Rodamientos GDM'),
+            'business' => Setting::get('business_name', 'Rodamiento GDM'),
             'city' => Setting::get('city', 'Valle de la Pascua, Guárico'),
             'rif' => Setting::get('rif'),
             'address' => Setting::get('address'),

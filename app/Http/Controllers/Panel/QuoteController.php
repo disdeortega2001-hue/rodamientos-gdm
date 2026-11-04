@@ -44,7 +44,7 @@ class QuoteController extends Controller
     {
         $quote->load(['customer', 'items', 'order']);
         $link = url('/cotizacion/'.$quote->public_token);
-        $business = Setting::get('business_name', 'Rodamientos GDM');
+        $business = Setting::get('business_name', 'Rodamiento GDM');
 
         return view('panel.quotes.show', [
             'quote' => $quote,

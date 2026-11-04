@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Mi pedido | Rodamientos GDM')
+@section('title', 'Mi pedido | Rodamiento GDM')
 
 @section('content')
 <section class="container page-section">

@@ -11,6 +11,6 @@ class SmokeTest extends TestCase
 
     public function test_home_responds(): void
     {
-        $this->get('/')->assertOk()->assertSee('Rodamientos GDM');
+        $this->get('/')->assertOk()->assertSee('Rodamiento GDM');
     }
 }

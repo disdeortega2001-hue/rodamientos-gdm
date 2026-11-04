@@ -16,7 +16,7 @@ class AdminSettingsTest extends TestCase
     private function settings(array $extra = []): array
     {
         return $extra + [
-            'business_name' => 'Rodamientos GDM',
+            'business_name' => 'Rodamiento GDM',
             'whatsapp_number' => '584129477195',
             'city' => 'Valle de la Pascua, Guárico',
             'usd_rate' => '186.42',

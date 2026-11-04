@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', $product->code.' | Rodamientos GDM')
-@section('description', $product->code.': '.$product->description.'. '.($product->measures ? 'Medidas '.$product->measures.'. ' : '').'Rodamientos GDM, Valle de la Pascua.')
+@section('title', $product->code.' | Rodamiento GDM')
+@section('description', $product->code.': '.$product->description.'. '.($product->measures ? 'Medidas '.$product->measures.'. ' : '').'Rodamiento GDM, Valle de la Pascua.')
 
 @php($out = $product->availability === \App\Enums\Availability::Out)
 

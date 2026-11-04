@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', 'Catálogo de rolineras SKF | Rodamientos GDM')
-@section('description', 'Catálogo de rolineras y rodamientos SKF, crucetas y estoperas. Busca por código o medida en Rodamientos GDM, Valle de la Pascua.')
+@section('title', 'Catálogo de rolineras SKF | Rodamiento GDM')
+@section('description', 'Catálogo de rolineras y rodamientos SKF, crucetas y estoperas. Busca por código o medida en Rodamiento GDM, Valle de la Pascua.')
 
 @section('content')
 <section class="page-band">

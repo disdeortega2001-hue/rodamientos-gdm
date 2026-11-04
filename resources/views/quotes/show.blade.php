@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Cotización '.$quote->number.' | Rodamientos GDM')
+@section('title', 'Cotización '.$quote->number.' | Rodamiento GDM')
 
 @section('content')
 <section class="container page-section narrow">

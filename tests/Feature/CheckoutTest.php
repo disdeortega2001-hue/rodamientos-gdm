@@ -42,7 +42,7 @@ class CheckoutTest extends TestCase
 
         $this->assertStringStartsWith('https://wa.me/584129477195?text=', $json['whatsapp_url']);
         $this->assertSame(
-            "Hola, Rodamientos GDM. Soy Ana Pérez. Mi pedido es GDM-0001:\n\n"
+            "Hola, Rodamiento GDM. Soy Ana Pérez. Mi pedido es GDM-0001:\n\n"
             ."- 2 x 6204 2RS SKF (20 x 47 x 14 mm): $12\n"
             ."- 1 x UC207 SKF (35 x 72 x 42.9 mm): $25\n\n"
             ."Total estimado: $37\n¿Tienen disponibilidad?",

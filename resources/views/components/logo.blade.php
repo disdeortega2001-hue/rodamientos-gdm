@@ -4,5 +4,5 @@
         <circle cx="16" cy="16" r="6" fill="none" stroke="#f08a1d" stroke-width="3"/>
         <g fill="currentColor"><circle cx="16" cy="6.8" r="1.7"/><circle cx="16" cy="25.2" r="1.7"/><circle cx="6.8" cy="16" r="1.7"/><circle cx="25.2" cy="16" r="1.7"/><circle cx="9.5" cy="9.5" r="1.7"/><circle cx="22.5" cy="9.5" r="1.7"/><circle cx="9.5" cy="22.5" r="1.7"/><circle cx="22.5" cy="22.5" r="1.7"/></g>
     </svg>
-    <span class="brand-text">Rodamientos <span>GDM</span></span>
+    <span class="brand-text">Rodamiento <span>GDM</span></span>
 </a>

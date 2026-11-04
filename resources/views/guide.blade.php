@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Guía de medidas y códigos de rolineras | Rodamientos GDM')
+@section('title', 'Guía de medidas y códigos de rolineras | Rodamiento GDM')
 @section('description', 'Aprende a medir una rolinera y a leer su código: diámetro interior, diámetro exterior, ancho y el significado de 2RS.')
 
 @section('content')

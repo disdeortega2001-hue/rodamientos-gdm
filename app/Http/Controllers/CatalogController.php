@@ -66,7 +66,7 @@ class CatalogController extends Controller
                 'orden' => $sort,
                 'disponibles' => $request->boolean('disponibles') ? 1 : null,
             ], fn ($v) => $v !== null && $v !== ''),
-            'whatsappSearchUrl' => WhatsApp::url('Hola, Rodamientos GDM. Estoy buscando: '.trim($search.' '.$measureText)),
+            'whatsappSearchUrl' => WhatsApp::url('Hola, Rodamiento GDM. Estoy buscando: '.trim($search.' '.$measureText)),
         ]);
     }
 
@@ -85,7 +85,7 @@ class CatalogController extends Controller
         return view('catalog.show', [
             'product' => $public,
             'related' => $this->present($related),
-            'whatsappUrl' => WhatsApp::url('Hola, Rodamientos GDM. Quiero consultar por '.$public->code.'.'),
+            'whatsappUrl' => WhatsApp::url('Hola, Rodamiento GDM. Quiero consultar por '.$public->code.'.'),
         ]);
     }
 

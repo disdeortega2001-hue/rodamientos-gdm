@@ -10,7 +10,7 @@ class OrderMessage
 {
     public static function for(Order $order, string $name): string
     {
-        $business = Setting::get('business_name', 'Rodamientos GDM');
+        $business = Setting::get('business_name', 'Rodamiento GDM');
         $lines = $order->items->map(function (OrderItem $item) {
             $label = "- {$item->quantity} x {$item->code}".($item->measures ? " ({$item->measures})" : '');
             $price = $item->unit_price_cents === null

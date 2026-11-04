@@ -10,7 +10,7 @@ class SettingsSeeder extends Seeder
     public function run(): void
     {
         foreach ([
-            'business_name' => 'Rodamientos GDM',
+            'business_name' => 'Rodamiento GDM',
             'whatsapp_number' => '584129477195',
             'city' => 'Valle de la Pascua, Guárico',
         ] as $key => $value) {

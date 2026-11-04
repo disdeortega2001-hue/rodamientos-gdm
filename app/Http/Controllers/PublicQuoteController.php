@@ -26,7 +26,7 @@ class PublicQuoteController extends Controller
     {
         return [
             'quote' => Quote::where('public_token', $token)->with(['customer', 'items'])->firstOrFail(),
-            'business' => Setting::get('business_name', 'Rodamientos GDM'),
+            'business' => Setting::get('business_name', 'Rodamiento GDM'),
             'city' => Setting::get('city', 'Valle de la Pascua, Guárico'),
             'rif' => Setting::get('rif'),
         ];
