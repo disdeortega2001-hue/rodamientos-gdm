@@ -13,12 +13,7 @@ class Money
 
     public static function bs(int $cents, string $rate): string
     {
-        return 'Bs. '.number_format(self::toBsCents($cents, $rate) / 100, 2, ',', '.');
-    }
-
-    public static function toBsCents(int $cents, string $rate): int
-    {
-        return (int) round($cents * (float) $rate);
+        return 'Bs. '.number_format(round($cents * (float) $rate) / 100, 2, ',', '.');
     }
 
     public static function parseCents(string|int|float|null $value): ?int

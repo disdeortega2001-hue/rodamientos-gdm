@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Services\ReportService;
+use App\Support\XlsxDownload;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ReportController extends Controller
@@ -43,9 +43,7 @@ class ReportController extends Controller
 
         $name = 'ventas-'.$from->format('Y-m-d').'-a-'.$to->format('Y-m-d').'.xlsx';
 
-        return response()->streamDownload(fn () => (new Xlsx($book))->save('php://output'), $name, [
-            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        ]);
+        return XlsxDownload::response($book, $name);
     }
 
     /** @return array{0: Carbon, 1: Carbon} */

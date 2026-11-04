@@ -81,7 +81,7 @@ class SystemRoutesTest extends TestCase
     public function test_deployment_file_needs_no_manual_secrets(): void
     {
         $yaml = file_get_contents(base_path('app.yaml'));
-        foreach (['APP_URL: https://rodamientos-gdm.wasmer.app', 'INSTALL_CODE_HASH:', 'engine: mysql'] as $line) {
+        foreach (['APP_URL: https://rodamiento-gdm.wasmer.app', 'INSTALL_CODE_HASH:', 'engine: mysql'] as $line) {
             $this->assertStringContainsString($line, $yaml);
         }
         foreach (['APP_KEY', 'ADMIN_PASSWORD', 'DB_PASSWORD', 'INSTALL_CODE:'] as $secret) {

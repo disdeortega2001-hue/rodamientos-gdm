@@ -11,11 +11,11 @@ use App\Models\Product;
 use App\Models\Setting;
 use App\Models\StockMovement;
 use App\Services\ExcelImporter;
+use App\Support\XlsxDownload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -61,9 +61,7 @@ class DataController extends Controller
         $this->sheet($book, 'Ajustes', ['Clave', 'Valor'],
             Setting::orderBy('key')->get()->map(fn (Setting $s) => [$s->key, $s->value]));
 
-        return response()->streamDownload(fn () => (new Xlsx($book))->save('php://output'), 'respaldo-gdm-'.now()->format('Y-m-d').'.xlsx', [
-            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        ]);
+        return XlsxDownload::response($book, 'respaldo-gdm-'.now()->format('Y-m-d').'.xlsx');
     }
 
     private function sheet(Spreadsheet $book, string $title, array $headers, iterable $rows): void

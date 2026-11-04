@@ -85,6 +85,28 @@ class HostedDeploymentTest extends TestCase
         unlink($path);
     }
 
+    public function test_backup_keeps_text_and_numbers_apart(): void
+    {
+        \App\Models\Customer::create(['name' => 'Ana & <Luis>', 'phone' => '04121234567']);
+        $response = $this->actingAs($this->admin())->get('/panel/respaldo')->assertOk();
+        $path = tempnam(sys_get_temp_dir(), 'bak').'.xlsx';
+        file_put_contents($path, $response->streamedContent());
+        $rows = IOFactory::load($path)->getSheetByName('Clientes')->toArray();
+        unlink($path);
+        $this->assertSame(['Nombre', 'Teléfono', 'Notas'], $rows[0]);
+        $this->assertSame('Ana & <Luis>', $rows[1][0]);
+        $this->assertSame('04121234567', $rows[1][1]);
+    }
+
+    public function test_exports_avoid_the_writer_that_fails_on_32_bit_php(): void
+    {
+        foreach (['DataController', 'ReportController'] as $controller) {
+            $source = file_get_contents(app_path("Http/Controllers/Panel/{$controller}.php"));
+            $this->assertStringNotContainsString('Writer\\Xlsx', $source);
+            $this->assertStringContainsString('XlsxDownload::response', $source);
+        }
+    }
+
     public function test_settings_page_links_tools(): void
     {
         $this->actingAs($this->admin())->get('/panel/ajustes')->assertSee('/panel/respaldo', false)->assertSee('/panel/importar', false);

@@ -19,7 +19,8 @@ class SupportTest extends TestCase
     public function test_bs_format(): void
     {
         $this->assertSame('Bs. 1.864,20', Money::bs(1000, '186.42'));
-        $this->assertSame(186420, Money::toBsCents(1000, '186.42'));
+        $this->assertSame('Bs. 1.864,20', Money::bs(1000, '186.42'));
+        $this->assertSame('Bs. 89.321.730,00', Money::bs(10000000, '893.2173'));
     }
 
     public function test_search_normalization(): void
