@@ -1,6 +1,6 @@
 <?php
 
-// Public catalog data. Costs and stock come from the Excel import and never live here.
+// Public catalog data. Costs and stock come from the Excel import or the panel and never live here.
 $conicos = 'Cónicos y kits';
 $rigidos = 'Rígidos 2RS';
 $agricolas = 'Agrícolas e industriales';
@@ -13,7 +13,7 @@ return [
         ['code' => '32207 SKF', 'excel' => '32207 SKF', 'category' => $conicos, 'measures' => '35 x 72 x 24.25 mm', 'description' => 'Rodamiento de rodillos cónicos', 'brand' => 'SKF'],
         ['code' => '32210 SKF', 'excel' => '32210 SKF', 'category' => $conicos, 'measures' => '50 x 90 x 24.75 mm', 'description' => 'Rodamiento de rodillos cónicos', 'brand' => 'SKF', 'featured' => true],
         ['code' => 'SET 105 SKF', 'excel' => 'SET 105 SKF', 'category' => $conicos, 'measures' => '50 x 82 x 21.5 mm', 'description' => 'Kit de rodamiento de rodillos cónicos', 'brand' => 'SKF', 'featured' => true],
-        ['code' => 'Kit punta de eje de rotativa', 'excel' => null, 'category' => $conicos, 'measures' => null, 'description' => 'Kit de rolineras SKF y estopera para punta de eje de rotativa', 'brand' => 'SKF', 'featured' => true, 'track_stock' => false],
+        ['code' => 'Kit punta de eje de rotativa', 'excel' => null, 'category' => $conicos, 'measures' => null, 'description' => 'Kit de rolineras SKF y estopera para la punta de eje de la rueda de rotativa', 'brand' => 'SKF', 'featured' => true, 'price_cents' => 4500],
         ['code' => '6202 2RS SKF', 'excel' => '6202 2RS SKF', 'category' => $rigidos, 'measures' => '15 x 35 x 11 mm', 'description' => 'Rodamiento rígido de bolas con sello de goma', 'brand' => 'SKF'],
         ['code' => '6204 2RS SKF', 'excel' => '6204 2RS SKF', 'category' => $rigidos, 'measures' => '20 x 47 x 14 mm', 'description' => 'Rodamiento rígido de bolas con sello de goma', 'brand' => 'SKF', 'featured' => true],
         ['code' => '6205 2RS SKF', 'excel' => '6205 2RS SKF', 'category' => $rigidos, 'measures' => '25 x 52 x 15 mm', 'description' => 'Rodamiento rígido de bolas de una hilera con doble sello de goma', 'brand' => 'SKF'],

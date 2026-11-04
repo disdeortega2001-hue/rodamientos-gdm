@@ -23,6 +23,7 @@ class CatalogSeeder extends Seeder
                 'measures' => $item['measures'],
                 'description' => $item['description'],
                 'brand' => $item['brand'],
+                'price_cents' => $item['price_cents'] ?? null,
                 'track_stock' => $item['track_stock'] ?? true,
                 'is_featured' => $item['featured'] ?? false,
             ]);

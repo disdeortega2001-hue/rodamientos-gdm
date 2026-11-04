@@ -23,5 +23,6 @@
             </li>
         @endforeach
     </ul>
+    <p>SKF y su logo son marcas de su titular. Se muestran para indicar la marca de las rolineras que vende Rodamiento GDM.</p>
 </section>
 @endsection

@@ -10,6 +10,7 @@ class Setting extends Model
         'address' => 'Valle de la Pascua, estado Guárico',
         'hours' => 'Siempre disponible',
         'instagram' => 'rodamientogdm',
+        'payment_methods' => 'Pago móvil',
     ];
 
     private const FORMER_BUSINESS_NAME = 'Rodamientos'.' GDM';

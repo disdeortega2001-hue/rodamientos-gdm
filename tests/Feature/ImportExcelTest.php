@@ -136,10 +136,12 @@ class ImportExcelTest extends TestCase
     {
         $this->assertSame(18, Product::count());
         $kit = Product::where('code', 'Kit punta de eje de rotativa')->firstOrFail();
-        $this->assertFalse($kit->track_stock);
-        $this->assertNull($kit->price_cents);
-        $this->assertSame(Availability::Ask, $kit->availability());
+        $this->assertTrue($kit->track_stock);
+        $this->assertSame(4500, $kit->price_cents);
+        $this->assertSame(0, $kit->stock);
+        $this->assertSame(Availability::Out, $kit->availability());
         $this->assertStringContainsString('SKF', $kit->description);
+        $this->assertStringContainsString('rueda de rotativa', $kit->description);
     }
 
     public function test_seeder_is_repeatable(): void

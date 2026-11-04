@@ -33,7 +33,7 @@
 
 <section class="container value-strip" aria-label="Por qué comprar aquí">
     <ul>
-        <li><x-icon name="ring" /> Rolineras marca SKF</li>
+        <li class="has-logo"><img class="brand-logo" src="{{ asset('img/site/skf.svg') }}" alt="Logo de SKF" width="83" height="20"> Rolineras marca SKF</li>
         <li><x-icon name="search" /> Búsqueda por código o medida</li>
         <li><x-icon name="chat" /> Pedido directo por WhatsApp</li>
         <li><x-icon name="pin" /> En Valle de la Pascua</li>

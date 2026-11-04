@@ -8,9 +8,9 @@ use Illuminate\Console\Command;
 
 class CreateAdmin extends Command
 {
-    protected $signature = 'gdm:create-admin {email}';
+    protected $signature = 'gdm:create-admin {email} {--seller : Crea un vendedor en lugar de un administrador}';
 
-    protected $description = 'Crea un usuario administrador';
+    protected $description = 'Crea un usuario administrador o vendedor';
 
     public function handle(): int
     {
@@ -27,11 +27,11 @@ class CreateAdmin extends Command
             'name' => $name,
             'email' => $this->argument('email'),
             'password' => $password,
-            'role' => Role::Admin,
+            'role' => $this->option('seller') ? Role::Seller : Role::Admin,
             'is_active' => true,
         ]);
 
-        $this->info('Administrador creado.');
+        $this->info($this->option('seller') ? 'Vendedor creado.' : 'Administrador creado.');
 
         return self::SUCCESS;
     }
