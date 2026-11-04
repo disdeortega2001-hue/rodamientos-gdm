@@ -85,6 +85,7 @@
         <a href="{{ url('/carrito') }}">Ver pedido</a>
     </div>
     <script src="{{ asset('js/cart.js') }}" defer></script>
+    <script src="{{ asset('js/motion.js') }}" defer></script>
     @stack('scripts')
 </body>
 </html>

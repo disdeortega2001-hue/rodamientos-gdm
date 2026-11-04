@@ -42,9 +42,9 @@
             <input class="form-control" id="low_stock_threshold" name="low_stock_threshold" type="number" min="0" value="{{ old('low_stock_threshold', $product->low_stock_threshold ?? 3) }}" required>
         </div>
         <div class="col-12 panel-checks">
-            <div class="form-check"><input class="form-check-input" id="track_stock" type="checkbox" name="track_stock" value="1" @checked(old('track_stock', $product->track_stock ?? true))><label class="form-check-label" for="track_stock">Controlar existencias</label></div>
-            <div class="form-check"><input class="form-check-input" id="is_visible" type="checkbox" name="is_visible" value="1" @checked(old('is_visible', $product->is_visible ?? true))><label class="form-check-label" for="is_visible">Visible en el catálogo</label></div>
-            <div class="form-check"><input class="form-check-input" id="is_featured" type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $product->is_featured))><label class="form-check-label" for="is_featured">Destacado en el inicio</label></div>
+            <div class="form-check choice"><input class="form-check-input" id="track_stock" type="checkbox" name="track_stock" value="1" @checked(old('track_stock', $product->track_stock ?? true))><label class="form-check-label" for="track_stock">Controlar existencias</label></div>
+            <div class="form-check choice"><input class="form-check-input" id="is_visible" type="checkbox" name="is_visible" value="1" @checked(old('is_visible', $product->is_visible ?? true))><label class="form-check-label" for="is_visible">Visible en el catálogo</label></div>
+            <div class="form-check choice"><input class="form-check-input" id="is_featured" type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $product->is_featured))><label class="form-check-label" for="is_featured">Destacado en el inicio</label></div>
         </div>
     </div>
     <button class="btn btn-brand mt-3">Guardar</button>

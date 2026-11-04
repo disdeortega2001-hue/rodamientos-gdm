@@ -16,11 +16,14 @@
         <div data-cart-content class="cart-layout" hidden>
             <div>
                 <ul class="cart-list" data-cart-list></ul>
-                <p class="cart-total">Total estimado: <strong data-cart-total></strong> <small data-cart-total-bs></small></p>
-                <p class="cart-note">Precios sujetos a confirmación. Confirmamos disponibilidad y forma de pago por WhatsApp.</p>
+                <div class="cart-summary">
+                    <p class="cart-total"><span>Total estimado</span> <strong data-cart-total></strong></p>
+                    <p class="cart-total-bs" data-cart-total-bs></p>
+                    <p class="cart-note">Precios sujetos a confirmación. Confirmamos disponibilidad y forma de pago por WhatsApp.</p>
+                </div>
             </div>
             <form class="cart-form" data-cart-form>
-                <h2 class="h5">Tus datos</h2>
+                <h2 class="form-section-title form-section-first">Tus datos</h2>
                 <div class="mb-3">
                     <label class="form-label" for="cart-name">Nombre</label>
                     <input class="form-control" id="cart-name" name="name" autocomplete="name" required maxlength="100">

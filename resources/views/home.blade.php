@@ -23,9 +23,9 @@
             </div>
         </div>
         <div class="finder-fields">
-            <div><label class="form-label" for="f-interior">Interior</label><input class="form-control" id="f-interior" name="interior" inputmode="decimal" placeholder="20"></div>
-            <div><label class="form-label" for="f-exterior">Exterior</label><input class="form-control" id="f-exterior" name="exterior" inputmode="decimal" placeholder="47"></div>
-            <div><label class="form-label" for="f-ancho">Ancho</label><input class="form-control" id="f-ancho" name="ancho" inputmode="decimal" placeholder="14"></div>
+            <div><label class="form-label" for="f-interior">Interior</label><span class="input-unit"><input class="form-control" id="f-interior" name="interior" inputmode="decimal" placeholder="20"><span aria-hidden="true">mm</span></span></div>
+            <div><label class="form-label" for="f-exterior">Exterior</label><span class="input-unit"><input class="form-control" id="f-exterior" name="exterior" inputmode="decimal" placeholder="47"><span aria-hidden="true">mm</span></span></div>
+            <div><label class="form-label" for="f-ancho">Ancho</label><span class="input-unit"><input class="form-control" id="f-ancho" name="ancho" inputmode="decimal" placeholder="14"><span aria-hidden="true">mm</span></span></div>
             <button class="btn btn-brand"><x-icon name="search" /> Buscar</button>
         </div>
     </form>

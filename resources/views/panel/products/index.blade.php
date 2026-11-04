@@ -28,8 +28,8 @@
                 <td class="text-end">{{ $product->price_cents === null ? 'Consultar' : \App\Support\Money::usd($product->price_cents) }}</td>
                 @can('manage-all')<td class="text-end">{{ \App\Support\Money::usd($product->avg_cost_cents) }}</td>@endcan
                 <td class="text-end">{{ $product->track_stock ? $product->stock : '—' }}</td>
-                <td>{{ $product->is_visible ? 'Visible' : 'Oculto' }}</td>
-                @can('manage-all')<td class="text-end"><a href="{{ url('/panel/productos/'.$product->id.'/editar') }}">Editar</a></td>@endcan
+                <td><span class="pill {{ $product->is_visible ? 'pill-ok' : 'pill-off' }}">{{ $product->is_visible ? 'Visible' : 'Oculto' }}</span></td>
+                @can('manage-all')<td class="text-end"><a class="btn btn-sm btn-outline-brand" href="{{ url('/panel/productos/'.$product->id.'/editar') }}">Editar</a></td>@endcan
             </tr>
         @endforeach
         </tbody>

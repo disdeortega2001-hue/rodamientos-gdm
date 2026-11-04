@@ -26,7 +26,7 @@
                 <td class="text-end">{{ $product->track_stock ? $product->stock : '—' }}</td>
                 <td><span class="availability availability-{{ $product->availability()->value }}">{{ $product->availability()->label() }}</span></td>
                 @can('manage-all')<td class="text-end">{{ \App\Support\Money::usd($product->avg_cost_cents) }}</td>@endcan
-                <td class="text-end"><a href="{{ url('/panel/inventario/'.$product->id) }}">{{ auth()->user()->can('manage-all') ? 'Registrar' : 'Historial' }}</a></td>
+                <td class="text-end"><a class="btn btn-sm btn-outline-brand" href="{{ url('/panel/inventario/'.$product->id) }}">{{ auth()->user()->can('manage-all') ? 'Registrar' : 'Historial' }}</a></td>
             </tr>
         @endforeach
         </tbody>
