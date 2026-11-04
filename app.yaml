@@ -1,9 +1,9 @@
 kind: wasmer.io/App.v0
-name: rodamientos-gdm
+name: rodamiento-gdm
 env:
   APP_NAME: "Rodamiento GDM"
   APP_ENV: production
-  APP_URL: https://rodamientos-gdm.wasmer.app
+  APP_URL: https://rodamiento-gdm.wasmer.app
   INSTALL_CODE_HASH: 02dc8c12132ecfe3b39bc0786bcbcad729e0225af475aec294055c4de10a11ab
   APP_DEBUG: "false"
   APP_LOCALE: es
