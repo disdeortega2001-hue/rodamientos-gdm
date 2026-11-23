@@ -23,7 +23,26 @@ class OrderMessage
         $total = $order->totalCents();
         $totalText = $total === null ? 'por confirmar' : Money::usd($total);
 
-        return "Hola, {$business}. Soy {$name}. Mi pedido es {$order->number}:\n\n{$lines}\n\n"
+        $customer = $order->customer;
+        $details = ["*Cliente:* {$name}"];
+
+        if ($customer?->document) {
+            $details[] = "*Cédula / RIF:* {$customer->document}";
+        }
+
+        if ($customer?->phone) {
+            $details[] = "*Teléfono:* {$customer->phone}";
+        }
+
+        if ($customer?->address) {
+            $details[] = "*Dirección:* {$customer->address}";
+        }
+
+        $customerBlock = implode("\n", $details);
+
+        return "Hola, {$business}. Mi pedido es {$order->number}:\n\n"
+            ."{$customerBlock}\n\n"
+            ."{$lines}\n\n"
             ."Total estimado: {$totalText}\n¿Tienen disponibilidad?";
     }
 }
