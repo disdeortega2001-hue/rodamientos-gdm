@@ -20,11 +20,21 @@ class CheckoutController extends Controller
     public function store(CheckoutRequest $request, OrderService $orders): JsonResponse
     {
         $data = $request->validated();
-        $customer = Customer::findOrCreateByPhone($data['name'], $data['phone']);
+
+        $customer = Customer::findOrCreateByPhone($data['name'], $data['phone'], [
+            'document' => $data['document'],
+            'address' => $data['address'] ?? null,
+        ]);
 
         $note = $data['note'] ?? null;
+
         if ($customer->name !== $data['name']) {
             $note = trim('Nombre indicado: '.$data['name'].'. '.$note);
+        }
+
+        // La dirección de este pedido queda en la nota (puede ser distinta a la guardada)
+        if (! empty($data['address'])) {
+            $note = trim('Dirección: '.$data['address'].'. '.$note);
         }
 
         $items = array_map(fn (array $i) => Arr::only($i, ['product_id', 'quantity']), $data['items']);
