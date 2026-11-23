@@ -48,8 +48,8 @@
         <tbody>
         @forelse ($movements as $movement)
             <tr>
-                <td>{{ $movement->created_at->format('d/m/Y H:i') }}</td>
-                <td>{{ $movement->type->label() }}</td>
+                <td>{{ $movement->created_at?->format('d/m/Y H:i') ?? '—' }}</td>
+                <td>{{ $movement->type instanceof \App\Enums\MovementType ? $movement->type->label() : ($movement->type ?? '—') }}</td>
                 <td class="text-end">{{ $movement->quantity > 0 ? '+' : '' }}{{ $movement->quantity }}</td>
                 @can('manage-all')<td class="text-end">{{ $movement->unit_cost_cents === null ? '—' : \App\Support\Money::usd($movement->unit_cost_cents) }}</td>@endcan
                 <td>{{ $movement->user?->name ?? '—' }}</td>
