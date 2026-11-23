@@ -36,7 +36,13 @@
         </td>
     </tr></table>
     <p><strong>Cliente:</strong> {{ $order->customer?->name }}</p>
+    @if ($order->customer?->document)
+        <p><strong>Cédula / RIF:</strong> {{ $order->customer->document }}</p>
+    @endif
     <p><strong>Teléfono:</strong> {{ $order->customer?->phone }}</p>
+    @if ($order->customer?->address)
+        <p><strong>Dirección:</strong> {{ $order->customer->address }}</p>
+    @endif
     <p><strong>Pago:</strong> {{ $order->paymentStatus()->label() }}</p>
     @include('notes.lines')
     <p class="legal">Este documento no sustituye una factura fiscal.</p>
