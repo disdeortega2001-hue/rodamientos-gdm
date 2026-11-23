@@ -56,7 +56,7 @@
                 <td>{{ $movement->note }}</td>
             </tr>
         @empty
-            <tr><td colspan="6">Todavía no hay movimientos.</td></tr>
+            <tr><td colspan="{{ auth()->user()->can('manage-all') ? 6 : 5 }}">Todavía no hay movimientos.</td></tr>
         @endforelse
         </tbody>
     </table>
